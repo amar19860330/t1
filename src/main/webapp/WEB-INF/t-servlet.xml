@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!-- was: <?xml version="1.0" encoding="UTF-8"?> -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:util="http://www.springframework.org/schema/util" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+    
+	<context:component-scan base-package="com.t1"/>
+	<mvc:resources mapping="/static/**" location="/static/" />
+    
+	<!-- <mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean class="com.amar.webs.interceptor.NeedLoginIntercepter"/>
+		</mvc:interceptor>
+	</mvc:interceptors> -->
+    
+	<mvc:annotation-driven  content-negotiation-manager="contentNegotiationManager" />
+
+	<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+		<property name="favorPathExtension" value="false" />
+		<property name="favorParameter" value="true" />
+		<property name="mediaTypes" >
+			<value>
+				json=application/json
+				xml=application/xml
+			</value>
+		</property>
+	</bean>
+
+
+	<bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
+
+	<bean id="viewResolver"
+	  class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+	  p:prefix="/WEB-INF/jsp/"
+	  p:suffix=".jsp" />
+
+	<!-- -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 以字节为单位的最大上传文件的大小 -->
+		<property name="maxUploadSize" value="100000000000" />
+	</bean>
+    
+	<bean id="paraMethodResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">    
+		<property name="paramName">  
+			<value>method</value>  
+		</property>    
+		<property name="defaultMethodName">
+			<value>list</value>
+		</property>
+	</bean>
+        
+	<!--    <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"                 
+	      id="mappingJacksonHttpMessageConverter" >   
+	    <property name="supportedMediaTypes">    
+		<list>    
+		    <value>text/html;charset=UTF-8</value>    
+		</list>    
+	    </property>    
+	</bean> 
+	-->
+	<!--    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />  
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" >  
+	    <property name="messageConverters">    
+		<util:list id="beanList">    
+		    <ref bean="mappingJacksonHttpMessageConverter"/>    
+		</util:list>    
+	    </property>   
+	</bean> -->
+	<tx:annotation-driven transaction-manager="transactionManager"/> 
+    
+
+</beans>
