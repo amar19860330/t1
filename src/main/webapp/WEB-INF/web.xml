@@ -6,6 +6,7 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/classes/t-*.xml</param-value>
+        <!--<param-value>t-database.xml</param-value>-->
     </context-param>
     <listener>
     	<listener-class>com.t1.utils.RequestListener</listener-class>
