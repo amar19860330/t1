@@ -23,7 +23,8 @@ public class TestController {
 	@RequestMapping
     public String list(HttpServletRequest request, HttpServletResponse response){
         int count = newsMapper.countByExample(new NewsExample());
-        count = 333;
+        //int count = 55;
+        count = 555;
         request.setAttribute("count",""+count);
         return "test/t1";
     }
