@@ -190,33 +190,33 @@ public class NewsExample {
     protected abstract static class GeneratedCriteria {
         protected List<Criterion> criteria;
 
-        @Override
-        public String toString() {
-            final StringBuffer sb = new StringBuffer("GeneratedCriteria{");
-            sb.append("criteria=").append(criteria);
-            sb.append('}');
-            if (criteria != null && criteria.size() > 0)
-                for (int i = 0; i < criteria.size(); i++) {
-                    Criterion c = criteria.get(i);
-                    sb.append(c.getCondition()).append(c.getValue()).append(c.getSecondValue());
-                }
-            return sb.toString();
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            if (obj == null ) {
-                return false;
-            } else {
-                return this.toString().equals(obj.toString());
-            }
-
-        }
-
-        @Override
-        public int hashCode() {
-            return this.toString().hashCode();
-        }
+//        @Override
+//        public String toString() {
+//            final StringBuffer sb = new StringBuffer("GeneratedCriteria{");
+//            sb.append("criteria=").append(criteria);
+//            sb.append('}');
+//            if (criteria != null && criteria.size() > 0)
+//                for (int i = 0; i < criteria.size(); i++) {
+//                    Criterion c = criteria.get(i);
+//                    sb.append(c.getCondition()).append(c.getValue()).append(c.getSecondValue());
+//                }
+//            return sb.toString();
+//        }
+//
+//        @Override
+//        public boolean equals(Object obj) {
+//            if (obj == null ) {
+//                return false;
+//            } else {
+//                return this.toString().equals(obj.toString());
+//            }
+//
+//        }
+//
+//        @Override
+//        public int hashCode() {
+//            return this.toString().hashCode();
+//        }
 
         protected GeneratedCriteria() {
             super();
