@@ -3,9 +3,9 @@
     PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    <properties>    
-        <property name="dialect" value="mysql"/>    
-    </properties>
+    <!--<properties>    -->
+        <!--<property name="dialect" value="mysql"/>    -->
+    <!--</properties>-->
     <settings>
         <setting name="lazyLoadingEnabled" value="false" />
     </settings>
@@ -16,4 +16,10 @@
             <property name="someProperty" value="100"/>
         </plugin>
     </plugins>-->
+    <plugins>
+
+        <plugin interceptor="com.t1.utils.db.OffsetLimitInterceptor">
+            <property name="dialectClass" value="com.t1.utils.db.MySQLDialect"/>
+        </plugin>
+    </plugins>
 </configuration>
