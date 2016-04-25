@@ -3,6 +3,7 @@ package com.t1.controller;
 import com.t1.db.dao.NewsMapper;
 import com.t1.db.model.News;
 import com.t1.db.model.NewsExample;
+import com.t1.framework.BaseController;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,13 +20,13 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/test")
-public class TestController {
+public class TestController extends BaseController{
 
     @Resource(name = "newsMapper")
     NewsMapper newsMapper;
 
 	@RequestMapping
-    public String list(HttpServletRequest request, HttpServletResponse response){
+    public String list(HttpServletRequest request, HttpServletResponse response)throws Exception{
         NewsExample newsExample = new NewsExample();
 //        int count = newsMapper.countByExample(newsExample);
 
@@ -34,6 +35,10 @@ public class TestController {
         List<News> list = newsMapper.selectByExample( newsExample,new RowBounds(4,2));
         int count = list.size();
         request.setAttribute("count",""+count);
+
+        boolean a = true;
+        if( a)
+        throw new Exception();
         return "test/t1";
     }
 

@@ -17,13 +17,13 @@
     
 	<context:component-scan base-package="com.t1"/>
 	<mvc:resources mapping="/static/**" location="/static/" />
-    
-	<!-- <mvc:interceptors>
+
+	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
-			<bean class="com.amar.webs.interceptor.NeedLoginIntercepter"/>
+			<bean class="com.t1.framework.CheckInterceptor"/>
 		</mvc:interceptor>
-	</mvc:interceptors> -->
+	</mvc:interceptors>
     
 	<mvc:annotation-driven  content-negotiation-manager="contentNegotiationManager" />
 
