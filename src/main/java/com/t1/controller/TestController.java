@@ -3,8 +3,14 @@ package com.t1.controller;
 import com.t1.db.dao.NewsMapper;
 import com.t1.db.model.News;
 import com.t1.db.model.NewsExample;
+import com.t1.framework.AppConfig;
 import com.t1.framework.BaseController;
 import org.apache.ibatis.session.RowBounds;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,12 +33,17 @@ public class TestController extends BaseController{
     @Resource(name = "newsMapper")
     NewsMapper newsMapper;
 
-	@RequestMapping
+    @Resource(name = "appConfig")
+    AppConfig appConfig;
+
+    @RequestMapping
     public String list(HttpServletRequest request, HttpServletResponse response)throws Exception{
         NewsExample newsExample = new NewsExample();
 //        int count = newsMapper.countByExample(newsExample);
 
         List<News> list1 = newsMapper.selectByExample( newsExample,new RowBounds(4,1));
+
+        String aa = appConfig.getByKey("db.pw");
 
         //List<News> list = newsMapper.selectByExample( newsExample,new RowBounds(4,2));
         List<News> list = newsMapper.selectByExample( newsExample);
@@ -69,4 +80,6 @@ public class TestController extends BaseController{
     {
 
     }
+
+
 }
