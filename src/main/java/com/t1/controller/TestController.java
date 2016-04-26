@@ -6,6 +6,8 @@ import com.t1.db.model.NewsExample;
 import com.t1.framework.BaseController;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
@@ -32,18 +34,20 @@ public class TestController extends BaseController{
 
         List<News> list1 = newsMapper.selectByExample( newsExample,new RowBounds(4,1));
 
-        List<News> list = newsMapper.selectByExample( newsExample,new RowBounds(4,2));
+        //List<News> list = newsMapper.selectByExample( newsExample,new RowBounds(4,2));
+        List<News> list = newsMapper.selectByExample( newsExample);
         int count = list.size();
         request.setAttribute("count",""+count);
 
-        boolean a = true;
+        boolean a = false;
         if( a)
         throw new Exception();
         return "test/t1";
     }
 
+    @Transactional( propagation = Propagation.REQUIRED , rollbackFor = { Exception.class } )
 	@RequestMapping(value = "/login")
-    public String login(){
+    public String login()throws Exception{
         News news = new News();
         news.setCategoryid(1);
         news.setContent("ccccc");
@@ -54,6 +58,15 @@ public class TestController extends BaseController{
         news.setStarttime( new Date());
 
         newsMapper.insert(news );
+        boolean a = true;
+        if( a)
+            throw new Exception();
         return "test/t2";
+    }
+
+
+    private void insertTest()throws Exception
+    {
+
     }
 }

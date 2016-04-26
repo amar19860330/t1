@@ -78,7 +78,7 @@
 		</util:list>    
 	    </property>   
 	</bean> -->
-	<tx:annotation-driven transaction-manager="transactionManager"/> 
+	<tx:annotation-driven transaction-manager="transactionManager"/>
     
 
 </beans>
