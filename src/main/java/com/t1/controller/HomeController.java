@@ -13,8 +13,12 @@ public class HomeController {
 
     @RequestMapping
     public String list(){
-        return "home/index";
+        return "home/b_tologin";
     }
 
+    @RequestMapping("/login")
+    public String login(){
+        return "home/b_main";
+    }
 
 }
