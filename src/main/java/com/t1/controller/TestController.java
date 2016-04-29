@@ -14,7 +14,9 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -75,6 +77,19 @@ public class TestController extends BaseController{
         return "test/t2";
     }
 
+    @RequestMapping(value = "/login/{id}/{name}")
+    public @ResponseBody News json(@PathVariable int id,@PathVariable String name)throws Exception{
+        News news = new News();
+        news.setCategoryid(1);
+        news.setContent("ccccc");
+        news.setEditorid(1);
+        news.setTitle("222");
+        news.setTitlepic("ssss");
+        news.setStatus(2);
+        news.setStarttime( new Date());
+
+        return news;
+    }
 
     private void insertTest()throws Exception
     {
