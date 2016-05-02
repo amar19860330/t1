@@ -118,4 +118,6 @@ nbactions.xml
 .nb-gradle/
 
 
+**/lib
 .idea/
+**/META-INF
