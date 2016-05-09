@@ -193,4 +193,14 @@ public class TestController extends BaseController
         outputStream.close();
     }
 
+    @RequestMapping(value = "/preview")
+    public void lookFirst(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        String info = request.getParameter("info");
+
+        //response.setHeader("Content-Type", "text/plain;charset=UTF-8");
+        //response.getOutputStream().write(info.getBytes());
+        response.setHeader("Content-Type", "text/html;charset=UTF-8");
+        response.getWriter().write(info);
+
+    }
 }
