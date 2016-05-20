@@ -119,3 +119,5 @@ nbactions.xml
 
 
 .idea/
+**/lib/
+**/MANIFEST.MF
