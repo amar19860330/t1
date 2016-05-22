@@ -3,6 +3,8 @@ package com.t1.controller.document;
 
 import com.t1.framework.AppConfig;
 import com.t1.framework.BaseController;
+import com.t1.service.document.FileNode;
+import com.t1.service.document.FileUtil;
 import org.apache.commons.fileupload.FileItem;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,8 +33,15 @@ public class DashBoardC extends BaseController {
 
     @RequestMapping("/toupload")
     public String toUploadFile() {
+        String docRootPath = appConfig.getDocRootPath();
+        FileUtil fileUtil = new FileUtil();
+        List<FileNode> nodeList = fileUtil.getDirNodebyFile(new File(docRootPath));
+
+
         return "document/upload/toupload";
     }
+
+
 
     @RequestMapping("/upload")
     public String uploadFile(HttpServletRequest request, HttpServletResponse response) throws IOException {
