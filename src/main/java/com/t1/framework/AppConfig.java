@@ -23,4 +23,19 @@ public class AppConfig {
         return environment.getProperty(key);
     }
 
+    public String getRootPath() {
+        String systemInfo = System.getProperty("os.name");
+        String rootPath = "";
+        if (systemInfo.toLowerCase().contains("win")) {
+            rootPath = getByKey("data.root.path");
+        } else {
+            rootPath = getByKey("data.linux.root.path");
+        }
+        return rootPath;
+    }
+
+    public String getDocRootPath() {
+        return getRootPath() + getByKey("doc.path");
+    }
+
 }
