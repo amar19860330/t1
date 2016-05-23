@@ -1,6 +1,8 @@
 package com.t1.controller.document;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.t1.framework.AppConfig;
 import com.t1.framework.BaseController;
 import com.t1.service.document.FileNode;
@@ -32,16 +34,34 @@ public class DashBoardC extends BaseController {
     AppConfig appConfig;
 
     @RequestMapping("/toupload")
-    public String toUploadFile() {
+    public String toUploadFile(HttpServletRequest request, HttpServletResponse response) {
         String docRootPath = appConfig.getDocRootPath();
         FileUtil fileUtil = new FileUtil();
+        fileUtil.setDocRootPath(docRootPath);
         List<FileNode> nodeList = fileUtil.getDirNodebyFile(new File(docRootPath));
+
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            String jsonInString = mapper.writeValueAsString(nodeList);
+            request.setAttribute("data",jsonInString);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
 
 
         return "document/upload/toupload";
     }
 
+    @RequestMapping("/folderInfo")
+    public String getFolderInfo(HttpServletRequest request, HttpServletResponse response) {
+        String clientPath = request.getParameter("clientPath");
 
+        String path = appConfig.getDocRootPath() + clientPath;
+        FileUtil fileUtil = new FileUtil();
+        List<FileNode> nodeList = fileUtil.getFileNodeByPath(path);
+        request.setAttribute("dirInfo",nodeList);
+        return "document/upload/folder";
+    }
 
     @RequestMapping("/upload")
     public String uploadFile(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -58,6 +78,8 @@ public class DashBoardC extends BaseController {
     public void indexFileDetail() {
 
     }
+
+
 
     public List<String>  uploadFileDetail(HttpServletRequest request) throws IOException {
         MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;

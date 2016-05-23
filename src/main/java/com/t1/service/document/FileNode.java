@@ -1,6 +1,10 @@
 package com.t1.service.document;
 
+import com.t1.utils.DatetimeUtil;
+
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by User on 2016/5/22.
@@ -11,22 +15,40 @@ public class FileNode {
     /***
      * 当id使用
      */
-    private String pathAndName;
+    private String id;
     private boolean isDir;
-    private String parentId;
+    private String pId;
+    private String size;
+    private String lastModifyTime;
 
     public FileNode(File file) {
-        this.pathAndName = file.getPath();
+        this.id = file.getPath();
         this.name = file.getName();
-        this.parentId = file.getParentFile().getPath();
+        this.pId = file.getParentFile().getPath();
         this.isDir = file.isDirectory();
+        this.path = id.substring(0, id.lastIndexOf("\\"));
+        this.lastModifyTime = DatetimeUtil.longToDatetime(file.lastModified());
+        this.size = file.getTotalSpace() / 1024 + "";
     }
+
     public FileNode(String path, String name, String pathAndName, boolean isDir, String parentId) {
         this.path = path;
         this.name = name;
-        this.pathAndName = pathAndName;
+        this.id = pathAndName;
         this.isDir = isDir;
-        this.parentId = parentId;
+        this.pId = parentId;
+    }
+
+    public Map<String, Object> toMap4Tree() {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        resultMap.put("id", id);
+        resultMap.put("pId", pId);
+        resultMap.put("isDir", isDir);
+        resultMap.put("name", name);
+        resultMap.put("path", path);
+
+        return resultMap;
     }
 
     public String getPath() {
@@ -45,12 +67,12 @@ public class FileNode {
         this.name = name;
     }
 
-    public String getPathAndName() {
-        return pathAndName;
+    public String getId() {
+        return id;
     }
 
-    public void setPathAndName(String pathAndName) {
-        this.pathAndName = pathAndName;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public boolean isDir() {
@@ -61,11 +83,27 @@ public class FileNode {
         isDir = dir;
     }
 
-    public String getParentId() {
-        return parentId;
+    public String getpId() {
+        return pId;
     }
 
-    public void setParentId(String parentId) {
-        this.parentId = parentId;
+    public void setpId(String pId) {
+        this.pId = pId;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public String getLastModifyTime() {
+        return lastModifyTime;
+    }
+
+    public void setLastModifyTime(String lastModifyTime) {
+        this.lastModifyTime = lastModifyTime;
     }
 }
