@@ -22,11 +22,11 @@ public class FileNode {
     private String lastModifyTime;
 
     public FileNode(File file) {
-        this.id = file.getPath();
+        this.id = file.getPath().replace("\\","/");
         this.name = file.getName();
-        this.pId = file.getParentFile().getPath();
+        this.pId = file.getParentFile().getPath().replace("\\","/");
         this.isDir = file.isDirectory();
-        this.path = id.substring(0, id.lastIndexOf("\\"));
+        this.path = id.substring(0, id.lastIndexOf(File.separatorChar)>0?id.lastIndexOf(File.separatorChar):id.length());
         this.lastModifyTime = DatetimeUtil.longToDatetime(file.lastModified());
         this.size = file.getTotalSpace() / 1024 + "";
     }
