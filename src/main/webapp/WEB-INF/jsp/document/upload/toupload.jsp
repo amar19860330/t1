@@ -71,7 +71,7 @@
 
     		var log, className = "dark";
     		function onClick(event, treeId, treeNode, clickFlag) {
-                $("#pathDiv").text( treeNode.path+"\\"+treeNode.name);
+                $("#pathDiv").text( treeNode.path+"/"+treeNode.name);
     			//alert("[ "+getTime()+" onClick ]&nbsp;&nbsp;clickFlag = " + clickFlag + " (" + (clickFlag===1 ? "普通选中": (clickFlag===0 ? "<b>取消选中</b>" : "<b>追加选中</b>")) + ")");
     		}
 
