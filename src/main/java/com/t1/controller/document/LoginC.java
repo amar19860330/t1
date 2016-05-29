@@ -46,9 +46,10 @@ public class LoginC extends BaseController {
 
     @RequestMapping("/checkUserName")
     public String checkUserName(HttpServletRequest request, HttpServletResponse response) {
+            String loginName = request.getParameter("loginname");
 
-
-        return "document/login/login";
+        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        return "document/login/checkUserName";
     }
 
 }

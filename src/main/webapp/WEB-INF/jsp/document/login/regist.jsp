@@ -48,21 +48,20 @@
                 <div class="form-group has-feedback">
                     <label for="loginname" class="col-sm-3 control-label">登录名:</label>
                     <div class="col-sm-9" >
-                        <input type="text" class="form-control" id="loginname" placeholder="请输入登录名称"
+                        <input type="text" class="form-control" id="loginname" name="loginname" placeholder="请输入登录名称"
                                pattern="^[a-zA-Z0-9]{5,10}$"
-                               data-error="请输入5-10位数字或英文字母" required>
+                               data-remote="checkUserName"
+                               data-error="需要5-10位数字或英文字母,并且以前没人用过的用户名" required>
                         <span class="glyphicon form-control-feedback" aria-hidden="true">
                         </span>
                         <div class="help-block with-errors" style="margin-bottom: 0"></div>
                     </div>
-
-
                 </div>
                 <div class="form-group has-feedback" >
                     <label for="realname" class="col-sm-3 control-label">真实姓名:</label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" id="realname" placeholder="输入姓名"
-                            pattern="^[a-zA-Z0-9]{5,10}$" data-error="请输入5-10位数字或英文字母" required>
+                            pattern="^.{2,10}$" data-error="长度为2-8位" required>
                         <span class="glyphicon form-control-feedback" aria-hidden="true">
                         </span>
                         <div class="help-block with-errors" style="margin-bottom: 0">
@@ -70,11 +69,37 @@
                     </div>
                 </div>
                 <div class="form-group has-feedback">
+                              <label for="pw" class="col-sm-3 control-label">密码:</label>
+                                    <div class="col-sm-9">
+                                        <input type="password" class="form-control" id="pw" data-minlength="6" required
+                                               data-error="请输入6-20位数字或英文字母密码" >
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true">
+                                        </span>
+                                        <div class="help-block with-errors" style="margin-bottom: 0">
+                                        </div>
+                                    </div>
+                                </div>
+                <div class="form-group has-feedback">
+                                    <label for="pw2" class="col-sm-3 control-label">确认密码:</label>
+                                    <div class="col-sm-9">
+                                        <input type="password" class="form-control" id="pw2" data-match="#pw"
+                                               data-error="密码不匹配"
+                                               data-match-error="密码不匹配" required
+                                        >
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true">
+                                        </span>
+                                        <div class="help-block with-errors" style="margin-bottom: 0">
+                                        </div>
+                                    </div>
+                                </div>
+                <div class="form-group has-feedback">
                     <label for="email" class="col-sm-3 control-label">邮箱:</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="email" placeholder="请输入邮箱地址">
+                        <input type="email" class="form-control" id="email" placeholder="请输入邮箱地址">
                         <span class="glyphicon form-control-feedback" aria-hidden="true">
                         </span>
+                        <div class="help-block with-errors" style="margin-bottom: 0">
+                        </div>
                     </div>
                 </div>
                 <div class="form-group has-feedback">
@@ -89,30 +114,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group has-feedback">
-                    <label for="pw" class="col-sm-3 control-label">密码:</label>
-                    <div class="col-sm-9">
-                        <input type="password" class="form-control" id="pw" data-minlength="6" required
-                               data-error="请输入6-20位数字或英文字母密码" >
-                        <span class="glyphicon form-control-feedback" aria-hidden="true">
-                        </span>
-                        <div class="help-block with-errors" style="margin-bottom: 0">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group has-feedback">
-                    <label for="pw2" class="col-sm-3 control-label">确认密码:</label>
-                    <div class="col-sm-9">
-                        <input type="password" class="form-control" id="pw2" data-match="#pw"
-                               data-error="密码不匹配"
-                               data-match-error="密码不匹配" required
-                        >
-                        <span class="glyphicon form-control-feedback" aria-hidden="true">
-                        </span>
-                        <div class="help-block with-errors" style="margin-bottom: 0">
-                        </div>
-                    </div>
-                </div>
+
                 <div class="form-group has-feedback">
                     <label for="address" class="col-sm-3 control-label">地址:</label>
                     <div class="col-sm-9">
