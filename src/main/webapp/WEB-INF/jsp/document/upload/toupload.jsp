@@ -7,7 +7,7 @@
 上传
 </title>
     <link rel="stylesheet" href="/static/bootstrap-3.3.6-dist/css/bootstrap.min.css" type="text/css">
-	<link rel="stylesheet" href="/static/tree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+	<link rel="stylesheet" href="/static/tree/css/metroStyle/metroStyle.css" type="text/css">
 
 	<script type="text/javascript" src="/static/jquery-1.12.2.min.js"></script>
     <script type="text/javascript" src="/static/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
@@ -24,6 +24,7 @@
     ul.ztree {
         margin-top: 10px;border: 0 solid #617775;background: #f0f6e4;width:auto;height:auto;min-height:600px;overflow-x:auto;
     }
+
     body{
         margin:10px;
     }
@@ -80,7 +81,10 @@
     		};
 
     		var log, className = "dark";
-    		var zNodes = ${data};
+
+
+            var zNodes = ${data};
+
 
             var currentDir = "";
     		var log, className = "dark";

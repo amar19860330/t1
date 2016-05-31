@@ -20,6 +20,8 @@ public class FileNode {
     private String pId;
     private String size;
     private String lastModifyTime;
+    private String iconSkin;
+
 
     public FileNode(File file) {
         this.id = file.getPath().replace("\\","/");
@@ -29,6 +31,7 @@ public class FileNode {
         this.path = id.substring(0, id.lastIndexOf(File.separatorChar)>0?id.lastIndexOf(File.separatorChar):id.length());
         this.lastModifyTime = DatetimeUtil.longToDatetime(file.lastModified());
         this.size = file.getTotalSpace() / 1024 + "";
+        this.iconSkin = "iconSkin01";
     }
 
     public FileNode(String path, String name, String pathAndName, boolean isDir, String parentId) {
@@ -47,7 +50,7 @@ public class FileNode {
         resultMap.put("isDir", isDir);
         resultMap.put("name", name);
         resultMap.put("path", path);
-
+        resultMap.put("iconSkin", "iconSkin01");
         return resultMap;
     }
 
@@ -105,5 +108,13 @@ public class FileNode {
 
     public void setLastModifyTime(String lastModifyTime) {
         this.lastModifyTime = lastModifyTime;
+    }
+
+    public String getIconSkin() {
+        return iconSkin;
+    }
+
+    public void setIconSkin(String iconSkin) {
+        this.iconSkin = iconSkin;
     }
 }
