@@ -47,7 +47,7 @@ public class LoginC extends BaseController {
     @RequestMapping("/checkUserName")
     public String checkUserName(HttpServletRequest request, HttpServletResponse response) {
             String loginName = request.getParameter("loginname");
-    
+
         //response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 
         boolean isExist = false;
