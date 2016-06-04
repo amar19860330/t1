@@ -49,6 +49,9 @@ public class LoginC extends BaseController {
             String loginName = request.getParameter("loginname");
 
         //response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+
+        boolean isExist = false;
+
         return "document/login/checkUserName";
     }
 
