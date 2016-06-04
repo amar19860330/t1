@@ -51,7 +51,7 @@ public class LoginC extends BaseController {
         //response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 
         boolean isExist = false;
-
+ 
         return "document/login/checkUserName";
     }
 
