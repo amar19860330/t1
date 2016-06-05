@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/static/bootstrap-3.3.6-dist/css/bootstrap.min.css" type="text/css">
 
     <script type="text/javascript" src="/static/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
-    <script src="/static/bootstrap-3.3.6-dist/js/validator.min.js"></script>
+
 
     <style>
         form div{
@@ -24,9 +24,14 @@
     <script>
         
         function regist() {
+            alert('123');
+            $('#registForm').attr("action","regist");
             $('#registForm').submit();
+            alert('222');
         }
-
+        function login(){
+            window.location.href="toLogin";
+        }
     </script>
 </head>
 <body>

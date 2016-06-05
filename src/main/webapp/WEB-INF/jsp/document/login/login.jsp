@@ -12,14 +12,17 @@
     <script type="text/javascript" src="/static/jquery-1.12.2.min.js"></script>
     <link rel="stylesheet" href="/static/bootstrap-3.3.6-dist/css/bootstrap.min.css" type="text/css">
     <script type="text/javascript" src="/static/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
-    <script>
+    <script type="text/javascript">
         function login()
         {
-
+            $('#form1').attr("action", "login");
+            $('#form1').submit();
         }
 
         function toRegist()
         {
+            $('#form1').attr("action", "toRegist");
+            $('#form1').submit();
         }
 
     </script>
@@ -28,11 +31,11 @@
 
 
 
-<form>
-    <input id="username" name="username" type="text" />
-    <input id="pw" name="pw" type="text"/>
-    <button id="submit" onclick="login()">登录</button>
-    <button id="tologin" onclick="toRegist()">注册</button>
+<form id="form1" method="POST">
+    <input id="loginname" name="loginname" type="text" />
+    <input id="pw" name="pw" type="password"/>
+    <button  onclick="login()">登录</button>
+    <button  onclick="toRegist()">注册</button>
 </form>
 </body>
 </html>

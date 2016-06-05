@@ -13,7 +13,8 @@ public class HomeController {
 
     @RequestMapping
     public String list(){
-        return "home/b_tologin";
+        //return "home/b_tologin";
+        return "forward:user/toLogin";
     }
 
     @RequestMapping("/login")
