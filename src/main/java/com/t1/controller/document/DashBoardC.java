@@ -3,6 +3,7 @@ package com.t1.controller.document;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.t1.db.model.SecUser;
 import com.t1.framework.AppConfig;
 import com.t1.framework.BaseController;
 import com.t1.service.document.FileNode;
@@ -54,8 +55,8 @@ public class DashBoardC extends BaseController {
     @RequestMapping("/folderInfo")
     public String getFolderInfo(HttpServletRequest request, HttpServletResponse response) {
         String clientPath = request.getParameter("clientPath");
-
-        String path = appConfig.getDocRootPath() + clientPath;
+        SecUser secUser = (SecUser)request.getAttribute("user");
+        String path = appConfig.getDocRootPath() + clientPath + secUser.getId() + "/";
         FileUtil fileUtil = new FileUtil();
         List<FileNode> nodeList = fileUtil.getFileNodeByPath(path);
         request.setAttribute("dirInfo",nodeList);
