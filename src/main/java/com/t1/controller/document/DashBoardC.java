@@ -33,7 +33,7 @@ public class DashBoardC extends BaseController {
     @Resource(name = "appConfig")
     AppConfig appConfig;
 
-    @RequestMapping("/toupload")
+    @RequestMapping("/")
     public String toUploadFile(HttpServletRequest request, HttpServletResponse response) {
         String docRootPath = appConfig.getDocRootPath();
         FileUtil fileUtil = new FileUtil();
@@ -47,7 +47,6 @@ public class DashBoardC extends BaseController {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-
 
         return "document/upload/toupload";
     }

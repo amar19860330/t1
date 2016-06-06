@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -49,18 +50,26 @@ public class LoginC extends BaseController {
         if( secUserList !=null && secUserList.size()>0)
         {
             request.getSession().setAttribute("user",secUserList.get(0));
-            return "forward:/doc/toupload";
+            return "forward:/doc/";
         }
         else
         {
+            if(!(loginName==null||loginName.equals("")))
+                request.setAttribute("error","error");
             return "document/login/login";
         }
+    }
+
+    @RequestMapping("/regist_success")
+    public String regist_success(HttpServletRequest request, HttpServletResponse response) {
+        return "document/login/regist_success";
     }
 
     @RequestMapping("/regist")
     public String regist(HttpServletRequest request, HttpServletResponse response) {
 
         SecUser secUser = ServletUtil.request2Bean(request,SecUser.class);
+        secUser.setLastlogin( new Date() );
         secUserMapper.insert(secUser);
 
         return "document/login/login";
