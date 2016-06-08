@@ -65,14 +65,18 @@ public class DashBoardC extends BaseController {
 
     @RequestMapping("/upload")
     public String uploadFile(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
 
-        if (multipartResolver.isMultipart(request)) {
-            List<String> uploadFileNameList = uploadFileDetail(request); //第一步,先上传文件
-            //第二步,分析文件,建立索引
+        try {
+            CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
+            if (multipartResolver.isMultipart(request)) {
+                List<String> uploadFileNameList = uploadFileDetail(request); //第一步,先上传文件
+                //第二步,分析文件,建立索引
+            }
+            return "document/upload/result";
         }
-
-        return "document/upload/result";
+        catch (Exception e){
+            return "forward:/doc/";
+        }
     }
 
     public void indexFileDetail() {
