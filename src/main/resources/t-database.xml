@@ -69,7 +69,12 @@
     </bean>
 
     <ehcache:annotation-driven cache-manager="ehCacheManager"/>
+
     <bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
         <property name="configLocation" value="classpath:ehcache.xml"/>
     </bean>
-</beans>       
+
+    <bean name="abstractDaoImpl" class="com.t1.db.jdbc.core.AbstractDaoImpl" abstract="true">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+</beans>
