@@ -13,10 +13,34 @@ public interface IBaseDao<T> {
 
 
 
+
+
+
+
+
+    //查询
+    public List<T> query(String sql,Object... params)throws Exception;
+    public List<T> query(T t,Object... params)throws Exception;
+    public int count(String sql,Object... params)throws Exception;
+
+
     public List<T> query(String sql)throws Exception;
     public List<T> query(T t)throws Exception;
+    public int count(String sql)throws Exception;
+
+
+
+    //删除类
+    public int delete(String sql) throws Exception;
+
+    //更新类
+    public int update(String sql)throws Exception;
+
     public void update(T t) throws Exception;
-    public void delete(int id) throws Exception;
+
+    //新增类
     public int add(T t) throws Exception;
+
+
 
 }

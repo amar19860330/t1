@@ -21,7 +21,7 @@ public abstract class AbstractDaoImpl<T> implements IBaseDao<T> {
 
     protected String table_name;
 
-    protected Class<? extends T> type;
+    protected Class<T> type;
 
     @SuppressWarnings("unchecked")
     public AbstractDaoImpl() {
@@ -46,8 +46,11 @@ public abstract class AbstractDaoImpl<T> implements IBaseDao<T> {
     }
 
     public List<T> query(String sql)throws Exception{
-        return null ;//jdbcTemplate.queryForList(sql);
+       return jdbcTemplate.queryForList(sql,type);
+        //return null ;//jdbcTemplate.queryForList(sql);
     }
+
+
 
     public String getTable_name() {
         return table_name;
