@@ -28,7 +28,7 @@ public interface IBaseDao<T> {
     public int update(String sql, Object... params) throws Exception;
 
     //新增类
-    public int add(T t) throws Exception;
+    //public int add(T t) throws Exception;
 
     public int add(String sql) throws Exception;
 

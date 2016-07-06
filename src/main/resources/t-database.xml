@@ -74,7 +74,12 @@
         <property name="configLocation" value="classpath:ehcache.xml"/>
     </bean>
 
-    <bean name="abstractDaoImpl" class="com.t1.db.jdbc.core.AbstractDaoImpl" abstract="true">
-        <property name="dataSource" ref="dataSource"/>
+    <bean id="jdbcTemplate"
+          class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource" />
     </bean>
+
+    <!--<bean name="abstractDaoImpl" class="com.t1.db.jdbc.core.BaseDaoct="true">-->
+        <!--<property name="dataSource" ref="dataSource"/>-->
+    <!--</bean>-->
 </beans>
