@@ -79,14 +79,15 @@ public class TestController extends BaseController{
         news.setCategoryid(2);
         news.setStatus(2);
 
-        News news2 = newsDao.add(news);
-        //List<News> list = newsDao.queryList("select * from news");
+        //News news2 = newsDao.add(news);
+
+        List<News> list = newsDao.queryList("select * from news");
 
         //List<Map<String,Object>> mapList = newsDao.queryMapList("select * from news");
 
-        boolean a = true;
-        if( a)
-            throw new Exception();
+//        boolean a = true;
+//        if( a)
+//            throw new Exception();
 
         return "test/t2";
     }

@@ -1,8 +1,8 @@
 package com.t1.db.dao;
 
-import com.googlecode.ehcache.annotations.Cacheable;
-import com.googlecode.ehcache.annotations.TriggersRemove;
-import com.googlecode.ehcache.annotations.When;
+//import com.googlecode.ehcache.annotations.Cacheable;
+//import com.googlecode.ehcache.annotations.TriggersRemove;
+//import com.googlecode.ehcache.annotations.When;
 import com.t1.db.model.News;
 import com.t1.db.model.NewsExample;
 import java.util.List;
@@ -22,7 +22,7 @@ public interface NewsMapper {
      *
      * @mbggenerated
      */
-    @Cacheable( cacheName = "allCache" )
+    //@Cacheable( cacheName = "allCache" )
     int countByExample(NewsExample example);
 
     /**
@@ -47,7 +47,7 @@ public interface NewsMapper {
      *
      * @mbggenerated
      */
-    @TriggersRemove( cacheName = "allCache" , when = When.AFTER_METHOD_INVOCATION , removeAll = true )
+    //@TriggersRemove( cacheName = "allCache" , when = When.AFTER_METHOD_INVOCATION , removeAll = true )
     int insert(News record);
 
     /**

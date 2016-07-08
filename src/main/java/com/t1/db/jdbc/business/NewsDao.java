@@ -1,7 +1,11 @@
 package com.t1.db.jdbc.business;
 
+//import com.googlecode.ehcache.annotations.Cacheable;
+//import com.googlecode.ehcache.annotations.TriggersRemove;
+//import com.googlecode.ehcache.annotations.When;
 import com.t1.db.jdbc.core.BaseDao;
 import com.t1.db.model.News;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -23,7 +27,7 @@ import java.util.Map;
 public class NewsDao extends BaseDao<News> {
 
     //@Resource(name = "newsDao")
-
+    //@TriggersRemove( cacheName = "allCache" , when = When.AFTER_METHOD_INVOCATION , removeAll = true )
     public News add(News news)throws Exception
     {
         //int id = add("insert into news.news (editorid,title,content,titlepic) values (?,?,?,?)",new Object[]{2,"title 2","content 2","pic path 2"});
@@ -36,4 +40,14 @@ public class NewsDao extends BaseDao<News> {
         return news;
     }
 
+//    @Cacheable( cacheName = "allCache" )
+//    @Override
+//    public List<News> queryList(String sql) throws Exception {
+//        return super.queryList(sql);
+//    }
+    @Cacheable( value = "allCache",key="#sql" )
+    @Override
+    public List<News> queryList(String sql) throws Exception {
+        return super.queryList(sql);
+    }
 }
