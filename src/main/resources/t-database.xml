@@ -74,11 +74,11 @@
         <!--<property name="configLocation" value="classpath:ehcache.xml"/>-->
     <!--</bean>-->
 
-    <cache:annotation-driven />
+    <cache:annotation-driven cache-manager="cacheManager"/>
     <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager"
-          p:cache-manager-ref="ehcache"/>
+          p:cacheManager-ref="ehcache"/>
     <bean id="ehcache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
-          p:config-location="classpath:ehcache.xml" p:shared="true"/>
+          p:configLocation="classpath:ehcache.xml" p:shared="true"/>
 
     <bean id="jdbcTemplate"
           class="org.springframework.jdbc.core.JdbcTemplate">

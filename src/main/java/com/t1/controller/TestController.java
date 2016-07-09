@@ -1,7 +1,10 @@
 package com.t1.controller;
 
 import com.t1.db.dao.NewsMapper;
+import com.t1.db.jdbc.business.INewsDao;
 import com.t1.db.jdbc.business.NewsDao;
+import com.t1.db.jdbc.core.BaseDao;
+import com.t1.db.jdbc.core.IBaseDao;
 import com.t1.db.model.News;
 import com.t1.db.model.NewsExample;
 import com.t1.framework.AppConfig;
@@ -41,7 +44,7 @@ public class TestController extends BaseController{
     AppConfig appConfig;
 
     @Resource(name = "newsDao")
-    NewsDao newsDao;
+    INewsDao newsDao;
 
     @RequestMapping
     public String list(HttpServletRequest request, HttpServletResponse response)throws Exception{
@@ -82,6 +85,35 @@ public class TestController extends BaseController{
         //News news2 = newsDao.add(news);
 
         List<News> list = newsDao.queryList("select * from news");
+
+        //List<Map<String,Object>> mapList = newsDao.queryMapList("select * from news");
+
+//        boolean a = true;
+//        if( a)
+//            throw new Exception();
+
+        return "test/t2";
+    }
+
+    @Transactional( propagation = Propagation.REQUIRED , rollbackFor = { Exception.class } )
+    @RequestMapping(value = "/testDao2")
+    public String testDao2()throws Exception{
+
+        News news = new News();
+        news.setReleasetime(new Date( new Date().getTime()- 7200*1000));
+        news.setLastedittime(new Date(new Date().getTime()+ 7200*1000));
+        news.setStarttime(new Date());
+        news.setSourceby("source by 111");
+        news.setTitle("title 1");
+        news.setTitlepic("pic.jpg");
+        news.setContent("xxxxxxxxxxxxx");
+        news.setEditorid(123);
+        news.setCategoryid(2);
+        news.setStatus(2);
+
+        News news2 = newsDao.add(news);
+
+        //List<News> list = newsDao.queryList("select * from news");
 
         //List<Map<String,Object>> mapList = newsDao.queryMapList("select * from news");
 
