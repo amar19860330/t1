@@ -13,9 +13,17 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>4.2.4.RELEASE</spring.version>
 		<jackson.version>2.5.3</jackson.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
 		<!-- db start -->
         <!-- http://www.mybatis.org/generator/index.html -->
         <dependency>
