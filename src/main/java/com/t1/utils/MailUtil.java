@@ -1,5 +1,12 @@
 package com.t1.utils;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.stereotype.*;
+
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -9,12 +16,29 @@ import java.util.Properties;
  * Created by amar on 16/9/11.
  * 在google郵箱下通過測試
  */
+@Repository
+//@Configuration
+//@PropertySource("classpath:config.properties")
 public class MailUtil {
 
-    private String fromEmail = "";
-    private String password = "";
+    //@Value("#{'${email.name}'}")
+    @Value("${email.name}")
+    private String fromEmail;
+    @Value("#{'${email.password}'}")
+    private String password;
+
     private String smtp_host = "smtp.gmail.com";
     private String smtp_port = "587";
+
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
+
+    public MailUtil(String fromEmail, String password) {
+        this.fromEmail = fromEmail;
+        this.password = password;
+    }
 
     public MailUtil(String fromEmail, String password, String smtp_host, String smtp_port) {
         this.fromEmail = fromEmail;
